@@ -24,13 +24,13 @@ Example to list cron triggers
 		fmt.Printf("%+v\n", ex)
 	}
 
-Example to create an execution
+Example to create a cron trigger
 
 	createOpts := &crontriggers.CreateOpts{
-		WorkflowID:  "w1",
-		Input:       "{}",
-		Params:      "{}",
-		Description: "this is a description",
+		WorkflowID:     "w1",
+		WorkflowInput:  "{}",
+		WorkflowParams: "{}",
+		Name:           "trigger",
 	}
 
 	execution, err := crontriggers.Create(fake.ServiceClient(), opts).Extract()
