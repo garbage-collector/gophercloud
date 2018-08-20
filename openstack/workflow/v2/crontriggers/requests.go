@@ -1,6 +1,8 @@
 package crontriggers
 
 import (
+	"time"
+
 	"github.com/gophercloud/gophercloud"
 	"github.com/gophercloud/gophercloud/pagination"
 )
@@ -75,6 +77,9 @@ type CreateOpts struct {
 
 	// Pattern is a Unix crontab patterns format to execute the workflow.
 	Pattern string `json:"pattern"`
+
+	// FirstExecutionTime is the first time the trigger will be executed.
+	FirstExecutionTime *time.Time `json:"first_execution_time,omitempty"`
 
 	// RemainingExecutions sets the number of executions for the trigger.
 	RemainingExecutions int `json:"remaining_executions,omitempty"`

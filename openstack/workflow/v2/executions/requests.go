@@ -20,6 +20,7 @@ type ListOpts struct {
 	Description string `q:"description"`
 
 	// State allows to filter by execution state.
+	// Possible values are IDLE, RUNNING, PAUSED, SUCCESS, ERROR, CANCELLED.
 	State string `q:"state"`
 
 	// SortDir allows to select sort direction.

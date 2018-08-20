@@ -51,7 +51,7 @@ type Execution struct {
 	// ProjectID is the project id owner of the execution.
 	ProjectID string `json:"project_id"`
 
-	// State is the current state of the execution. State can be one of: IDLE, RUNNING, SUCCESS, ERROR, PAUSED.
+	// State is the current state of the execution. State can be one of: IDLE, RUNNING, SUCCESS, ERROR, PAUSED, CANCELLED.
 	State string `json:"state"`
 
 	// WorkflowID is the ID of the workflow linked to the execution.
