@@ -71,6 +71,9 @@ type CreateOpts struct {
 	// WorkflowID is the unique id of the workflow.
 	WorkflowID string `json:"workflow_id" required:"true"`
 
+	// WorkflowNamespace is the namespace of the workflow.
+	WorkflowNamespace string `json:"workflow_namespace,omitempty"`
+
 	// Input is a JSON structure containing workflow input values, serialized as string.
 	Input string `json:"input,omitempty"`
 

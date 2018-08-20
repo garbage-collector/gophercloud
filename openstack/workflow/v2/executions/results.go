@@ -26,11 +26,9 @@ type DeleteResult struct {
 
 // Extract helps to get an Execution struct from a Get or a Create function.
 func (r commonResult) Extract() (*Execution, error) {
-	var s struct {
-		Execution *Execution `json:"execution"`
-	}
-	err := r.ExtractInto(&s)
-	return s.Execution, err
+	e := Execution{}
+	err := r.ExtractInto(&e)
+	return &e, err
 }
 
 // Execution represents a workflow execution on OpenStack mistral API.

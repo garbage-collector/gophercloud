@@ -91,20 +91,18 @@ func TestGetExecution(t *testing.T) {
 		w.Header().Add("Content-Type", "application/json")
 		fmt.Fprintf(w, `
 			{
-				"execution": {
-					"created_at": "1970-01-01T00:00:00.000000",
-					"description": "this is a description",
-					"id": "1",
-					"input": "{}",
-					"output": "{}",
-					"params": "{}",
-					"project_id": "p1",
-					"state": "SUCCESS",
-					"updated_at": "1970-01-01T00:00:00.000000",
-					"workflow_id": "w1",
-					"workflow_name": "flow",
-					"workflow_namespace": "some_namespace"
-				}
+				"created_at": "1970-01-01T00:00:00.000000",
+				"description": "this is a description",
+				"id": "1",
+				"input": "{}",
+				"output": "{}",
+				"params": "{}",
+				"project_id": "p1",
+				"state": "SUCCESS",
+				"updated_at": "1970-01-01T00:00:00.000000",
+				"workflow_id": "w1",
+				"workflow_name": "flow",
+				"workflow_namespace": "some_namespace"
 			}
 		`)
 	})
@@ -143,20 +141,18 @@ func TestCreateExecution(t *testing.T) {
 		w.Header().Add("Content-Type", "application/json")
 		fmt.Fprintf(w, `
 			{
-				"execution": {
-					"created_at": "1970-01-01T00:00:00.000000",
-					"description": "this is a description",
-					"id": "1",
-					"input": "{}",
-					"output": "{}",
-					"params": "{}",
-					"project_id": "p1",
-					"state": "SUCCESS",
-					"updated_at": "1970-01-01T00:00:00.000000",
-					"workflow_id": "w1",
-					"workflow_name": "flow",
-					"workflow_namespace": "some_namespace"
-				}
+				"created_at": "1970-01-01T00:00:00.000000",
+				"description": "this is a description",
+				"id": "1",
+				"input": "{}",
+				"output": "{}",
+				"params": "{}",
+				"project_id": "p1",
+				"state": "SUCCESS",
+				"updated_at": "1970-01-01T00:00:00.000000",
+				"workflow_id": "w1",
+				"workflow_name": "flow",
+				"workflow_namespace": "some_namespace"
 			}
 		`)
 	})
