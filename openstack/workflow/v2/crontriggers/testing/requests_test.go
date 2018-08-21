@@ -5,6 +5,9 @@ import (
 	"net/http"
 	"reflect"
 	"testing"
+	"time"
+
+	"github.com/gophercloud/gophercloud"
 
 	"github.com/gophercloud/gophercloud/openstack/workflow/v2/crontriggers"
 	"github.com/gophercloud/gophercloud/pagination"
@@ -29,14 +32,14 @@ func TestListCronTriggers(t *testing.T) {
 			fmt.Fprintf(w, `{
 				"cron_triggers": [
 					{
-						"created_at": "1970-01-01T00:00:00.000000",
+						"created_at": "1970-01-01 00:00:00",
 						"id": "1",
 						"name": "trigger",
 						"pattern": "* * * * *",
 						"project_id": "p1",
 						"remaining_executions": 42,
 						"scope": "private",
-						"updated_at": "1970-01-01T00:00:00.000000",
+						"updated_at": "1970-01-01 00:00:00",
 						"workflow_id": "w1",
 						"workflow_input": "{}",
 						"workflow_name": "my_wf",
@@ -63,7 +66,7 @@ func TestListCronTriggers(t *testing.T) {
 		}
 
 		expected := []crontriggers.CronTrigger{
-			{ID: "1", Name: "trigger", Pattern: "* * * * *", ProjectID: "p1", RemainingExecutions: 42, Scope: "private", WorkflowID: "w1", WorkflowName: "my_wf", WorkflowInput: "{}", WorkflowParams: "{}"},
+			{ID: "1", Name: "trigger", Pattern: "* * * * *", ProjectID: "p1", RemainingExecutions: 42, Scope: "private", WorkflowID: "w1", WorkflowName: "my_wf", WorkflowInput: "{}", WorkflowParams: "{}", CreatedAt: gophercloud.JSONRFC3339ZNoTNoZ(time.Date(1970, time.January, 1, 0, 0, 0, 0, time.UTC))},
 		}
 
 		if !reflect.DeepEqual(expected, actual) {
@@ -91,14 +94,14 @@ func TestGetCronTrigger(t *testing.T) {
 		w.Header().Add("Content-Type", "application/json")
 		fmt.Fprintf(w, `
 			{
-				"created_at": "1970-01-01T00:00:00.000000",
+				"created_at": "1970-01-01 00:00:00",
 				"id": "1",
 				"name": "trigger",
 				"pattern": "* * * * *",
 				"project_id": "p1",
 				"remaining_executions": 42,
 				"scope": "private",
-				"updated_at": "1970-01-01T00:00:00.000000",
+				"updated_at": "1970-01-01 00:00:00",
 				"workflow_id": "w1",
 				"workflow_input": "{}",
 				"workflow_name": "my_wf",
@@ -123,6 +126,7 @@ func TestGetCronTrigger(t *testing.T) {
 		WorkflowName:        "my_wf",
 		WorkflowInput:       "{}",
 		WorkflowParams:      "{}",
+		CreatedAt:           gophercloud.JSONRFC3339ZNoTNoZ(time.Date(1970, time.January, 1, 0, 0, 0, 0, time.UTC)),
 	}
 
 	if !reflect.DeepEqual(expected, actual) {
@@ -141,14 +145,14 @@ func TestCreateCronTrigger(t *testing.T) {
 		w.Header().Add("Content-Type", "application/json")
 		fmt.Fprintf(w, `
 			{
-				"created_at": "1970-01-01T00:00:00.000000",
+				"created_at": "1970-01-01 00:00:00",
 				"id": "1",
 				"name": "trigger",
 				"pattern": "* * * * *",
 				"project_id": "p1",
 				"remaining_executions": 42,
 				"scope": "private",
-				"updated_at": "1970-01-01T00:00:00.000000",
+				"updated_at": "1970-01-01 00:00:00",
 				"workflow_id": "w1",
 				"workflow_input": "{}",
 				"workflow_name": "my_wf",
@@ -180,6 +184,7 @@ func TestCreateCronTrigger(t *testing.T) {
 		WorkflowName:        "my_wf",
 		WorkflowInput:       "{}",
 		WorkflowParams:      "{}",
+		CreatedAt:           gophercloud.JSONRFC3339ZNoTNoZ(time.Date(1970, time.January, 1, 0, 0, 0, 0, time.UTC)),
 	}
 
 	if !reflect.DeepEqual(expected, actual) {

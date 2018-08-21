@@ -64,6 +64,9 @@ type CronTrigger struct {
 
 	// WorkflowParams contains workflow type specific parameters in a JSON stringified object.
 	WorkflowParams string `json:"workflow_params"`
+
+	// CreatedAt contains the cron trigger creation date.
+	CreatedAt gophercloud.JSONRFC3339ZNoTNoZ `json:"created_at"`
 }
 
 // CronTriggerPage contains a single page of all cron triggers from a List call.

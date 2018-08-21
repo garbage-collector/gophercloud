@@ -5,7 +5,9 @@ import (
 	"net/http"
 	"reflect"
 	"testing"
+	"time"
 
+	"github.com/gophercloud/gophercloud"
 	"github.com/gophercloud/gophercloud/openstack/workflow/v2/executions"
 	"github.com/gophercloud/gophercloud/pagination"
 	th "github.com/gophercloud/gophercloud/testhelper"
@@ -29,7 +31,7 @@ func TestListExecutions(t *testing.T) {
 			fmt.Fprintf(w, `{
 				"executions": [
 					{
-						"created_at": "1970-01-01T00:00:00.000000",
+						"created_at": "1970-01-01 00:00:00",
 						"description": "this is a description",
 						"id": "1",
 						"input": "{}",
@@ -37,7 +39,7 @@ func TestListExecutions(t *testing.T) {
 						"params": "{}",
 						"project_id": "p1",
 						"state": "SUCCESS",
-						"updated_at": "1970-01-01T00:00:00.000000",
+						"updated_at": "1970-01-01 00:00:00",
 						"workflow_id": "w1",
 						"workflow_name": "flow",
 						"workflow_namespace": "some_namespace"
@@ -63,7 +65,7 @@ func TestListExecutions(t *testing.T) {
 		}
 
 		expected := []executions.Execution{
-			{ID: "1", Description: "this is a description", Input: "{}", Output: "{}", Params: "{}", ProjectID: "p1", State: "SUCCESS", WorkflowID: "w1", WorkflowName: "flow", WorkflowNamespace: "some_namespace"},
+			{ID: "1", Description: "this is a description", Input: "{}", Output: "{}", Params: "{}", ProjectID: "p1", State: "SUCCESS", WorkflowID: "w1", WorkflowName: "flow", WorkflowNamespace: "some_namespace", CreatedAt: gophercloud.JSONRFC3339ZNoTNoZ(time.Date(1970, time.January, 1, 0, 0, 0, 0, time.UTC))},
 		}
 
 		if !reflect.DeepEqual(expected, actual) {
@@ -91,7 +93,7 @@ func TestGetExecution(t *testing.T) {
 		w.Header().Add("Content-Type", "application/json")
 		fmt.Fprintf(w, `
 			{
-				"created_at": "1970-01-01T00:00:00.000000",
+				"created_at": "1970-01-01 00:00:00",
 				"description": "this is a description",
 				"id": "1",
 				"input": "{}",
@@ -99,7 +101,7 @@ func TestGetExecution(t *testing.T) {
 				"params": "{}",
 				"project_id": "p1",
 				"state": "SUCCESS",
-				"updated_at": "1970-01-01T00:00:00.000000",
+				"updated_at": "1970-01-01 00:00:00",
 				"workflow_id": "w1",
 				"workflow_name": "flow",
 				"workflow_namespace": "some_namespace"
@@ -123,6 +125,7 @@ func TestGetExecution(t *testing.T) {
 		WorkflowID:        "w1",
 		WorkflowName:      "flow",
 		WorkflowNamespace: "some_namespace",
+		CreatedAt:         gophercloud.JSONRFC3339ZNoTNoZ(time.Date(1970, time.January, 1, 0, 0, 0, 0, time.UTC)),
 	}
 
 	if !reflect.DeepEqual(expected, actual) {
@@ -141,7 +144,7 @@ func TestCreateExecution(t *testing.T) {
 		w.Header().Add("Content-Type", "application/json")
 		fmt.Fprintf(w, `
 			{
-				"created_at": "1970-01-01T00:00:00.000000",
+				"created_at": "1970-01-01 00:00:00",
 				"description": "this is a description",
 				"id": "1",
 				"input": "{}",
@@ -149,7 +152,7 @@ func TestCreateExecution(t *testing.T) {
 				"params": "{}",
 				"project_id": "p1",
 				"state": "SUCCESS",
-				"updated_at": "1970-01-01T00:00:00.000000",
+				"updated_at": "1970-01-01 00:00:00",
 				"workflow_id": "w1",
 				"workflow_name": "flow",
 				"workflow_namespace": "some_namespace"
@@ -180,6 +183,7 @@ func TestCreateExecution(t *testing.T) {
 		WorkflowID:        "w1",
 		WorkflowName:      "flow",
 		WorkflowNamespace: "some_namespace",
+		CreatedAt:         gophercloud.JSONRFC3339ZNoTNoZ(time.Date(1970, time.January, 1, 0, 0, 0, 0, time.UTC)),
 	}
 
 	if !reflect.DeepEqual(expected, actual) {

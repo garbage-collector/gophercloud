@@ -36,6 +36,9 @@ type Execution struct {
 	// ID is the execution's unique ID.
 	ID string `json:"id"`
 
+	// CreatedAt contains the cron trigger creation date.
+	CreatedAt gophercloud.JSONRFC3339ZNoTNoZ `json:"created_at"`
+
 	// Description is the description of the execution.
 	Description string `json:"description"`
 
@@ -53,6 +56,9 @@ type Execution struct {
 
 	// State is the current state of the execution. State can be one of: IDLE, RUNNING, SUCCESS, ERROR, PAUSED, CANCELLED.
 	State string `json:"state"`
+
+	// StateInfo contains an optional state information string.
+	StateInfo string `json:"state_info"`
 
 	// WorkflowID is the ID of the workflow linked to the execution.
 	WorkflowID string `json:"workflow_id"`
