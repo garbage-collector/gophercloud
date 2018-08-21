@@ -109,7 +109,7 @@ func TestGetCronTrigger(t *testing.T) {
 
 	actual, err := crontriggers.Get(fake.ServiceClient(), "1").Extract()
 	if err != nil {
-		t.Fatalf("Unable to get execution: %v", err)
+		t.Fatalf("Unable to get cron trigger: %v", err)
 	}
 
 	expected := &crontriggers.CronTrigger{
@@ -130,7 +130,7 @@ func TestGetCronTrigger(t *testing.T) {
 	}
 }
 
-func TestCreateExecution(t *testing.T) {
+func TestCreateCronTrigger(t *testing.T) {
 	th.SetupHTTP()
 	defer th.TeardownHTTP()
 
@@ -166,7 +166,7 @@ func TestCreateExecution(t *testing.T) {
 
 	actual, err := crontriggers.Create(fake.ServiceClient(), opts).Extract()
 	if err != nil {
-		t.Fatalf("Unable to create execution: %v", err)
+		t.Fatalf("Unable to create cron trigger: %v", err)
 	}
 
 	expected := &crontriggers.CronTrigger{
@@ -187,7 +187,7 @@ func TestCreateExecution(t *testing.T) {
 	}
 }
 
-func TestDeleteExecution(t *testing.T) {
+func TestDeleteCronTrigger(t *testing.T) {
 	th.SetupHTTP()
 	defer th.TeardownHTTP()
 

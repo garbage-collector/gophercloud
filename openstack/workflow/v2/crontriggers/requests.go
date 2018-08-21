@@ -96,10 +96,10 @@ type CreateOpts struct {
 
 // ToCronTriggerCreateMap constructs a request body from CreateOpts.
 func (opts CreateOpts) ToCronTriggerCreateMap() (map[string]interface{}, error) {
-	return gophercloud.BuildRequestBody(opts, "execution")
+	return gophercloud.BuildRequestBody(opts, "cron_trigger")
 }
 
-// Create requests the creation of a new execution.
+// Create requests the creation of a new cron trigger.
 func Create(client *gophercloud.ServiceClient, opts CreateOptsBuilder) (r CreateResult) {
 	b, err := opts.ToCronTriggerCreateMap()
 	if err != nil {
@@ -114,14 +114,14 @@ func Create(client *gophercloud.ServiceClient, opts CreateOptsBuilder) (r Create
 	return
 }
 
-// Get retrieves details of a single execution.
+// Get retrieves details of a single cron trigger.
 // Use ExtractCronTrigger to convert its result into an CronTrigger.
 func Get(client *gophercloud.ServiceClient, id string) (r GetResult) {
 	_, r.Err = client.Get(getURL(client, id), &r.Body, nil)
 	return
 }
 
-// Delete deletes the specified execution.
+// Delete deletes the specified cron trigger.
 func Delete(client *gophercloud.ServiceClient, id string) (r DeleteResult) {
 	_, r.Err = client.Delete(deleteURL(client, id), nil)
 	return

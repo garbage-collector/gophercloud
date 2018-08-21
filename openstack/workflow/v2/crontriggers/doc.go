@@ -33,7 +33,7 @@ Example to create a cron trigger
 		Name:           "trigger",
 	}
 
-	execution, err := crontriggers.Create(fake.ServiceClient(), opts).Extract()
+	crontrigger, err := crontriggers.Create(fake.ServiceClient(), opts).Extract()
 	if err != nil {
 		panic(err)
 	}

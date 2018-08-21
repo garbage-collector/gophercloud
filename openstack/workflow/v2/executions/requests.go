@@ -87,7 +87,7 @@ type CreateOpts struct {
 
 // ToExecutionCreateMap constructs a request body from CreateOpts.
 func (opts CreateOpts) ToExecutionCreateMap() (map[string]interface{}, error) {
-	return gophercloud.BuildRequestBody(opts, "execution")
+	return gophercloud.BuildRequestBody(opts, "wf_ex")
 }
 
 // Create requests the creation of a new execution.

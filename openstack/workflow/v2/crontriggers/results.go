@@ -31,7 +31,7 @@ func (r commonResult) Extract() (*CronTrigger, error) {
 	return &c, err
 }
 
-// CronTrigger represents a workflow execution on OpenStack mistral API.
+// CronTrigger represents a workflow cron trigger on OpenStack mistral API.
 type CronTrigger struct {
 	// ID is the cron trigger's unique ID.
 	ID string `json:"id"`
@@ -43,7 +43,7 @@ type CronTrigger struct {
 	// Example of value: "* * * * *"
 	Pattern string `json:"pattern"`
 
-	// ProjectID is the project id owner of the execution.
+	// ProjectID is the project id owner of the cron trigger.
 	ProjectID string `json:"project_id"`
 
 	// RemainingExecutions is the number of remaining executions of this trigger.
