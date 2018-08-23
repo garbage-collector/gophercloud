@@ -108,6 +108,7 @@ func Create(client *gophercloud.ServiceClient, opts CreateOptsBuilder) (r Create
 		RawBody: b,
 		MoreHeaders: map[string]string{
 			"Content-Type": "text/plain",
+			"Accept":       "", // Drop default JSON Accept header
 		},
 	})
 

@@ -167,19 +167,21 @@ create_vm:
 		w.WriteHeader(http.StatusCreated)
 		w.Header().Add("Content-Type", "application/json")
 
-		fmt.Fprintf(w, `
-			{
-				"created_at": "1970-01-01T00:00:00.000000",
-				"definition": "Workflow Definition in Mistral DSL v2",
-				"id": "1",
-				"input": "param1, param2",
-				"name": "flow",
-				"namespace": "some-namespace",
-				"project_id": "p1",
-				"scope": "private",
-				"updated_at": "1970-01-01T00:00:00.000000"
-			}
-		`)
+		fmt.Fprintf(w, `{
+			"workflows": [
+				{
+					"created_at": "1970-01-01T00:00:00.000000",
+					"definition": "Workflow Definition in Mistral DSL v2",
+					"id": "1",
+					"input": "param1, param2",
+					"name": "flow",
+					"namespace": "some-namespace",
+					"project_id": "p1",
+					"scope": "private",
+					"updated_at": "1970-01-01T00:00:00.000000"
+				}
+			]
+		}`)
 	})
 
 	opts := &workflows.CreateOpts{
@@ -193,14 +195,16 @@ create_vm:
 		t.Fatalf("Unable to create workflow: %v", err)
 	}
 
-	expected := &workflows.Workflow{
-		ID:         "1",
-		Definition: "Workflow Definition in Mistral DSL v2",
-		Name:       "flow",
-		Namespace:  "some-namespace",
-		Input:      "param1, param2",
-		ProjectID:  "p1",
-		Scope:      "private",
+	expected := []workflows.Workflow{
+		workflows.Workflow{
+			ID:         "1",
+			Definition: "Workflow Definition in Mistral DSL v2",
+			Name:       "flow",
+			Namespace:  "some-namespace",
+			Input:      "param1, param2",
+			ProjectID:  "p1",
+			Scope:      "private",
+		},
 	}
 
 	if !reflect.DeepEqual(expected, actual) {

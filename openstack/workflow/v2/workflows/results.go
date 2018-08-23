@@ -24,11 +24,20 @@ type DeleteResult struct {
 	gophercloud.ErrResult
 }
 
-// Extract helps to get a Workflow struct from a Get or a Create function.
+// Extract helps to get a Workflow struct from a Get function.
 func (r commonResult) Extract() (*Workflow, error) {
 	c := Workflow{}
 	err := r.ExtractInto(&c)
 	return &c, err
+}
+
+// Extract helps to get created Workflow struct from a Create function.
+func (r CreateResult) Extract() ([]Workflow, error) {
+	var s struct {
+		Workflows []Workflow `json:"workflows"`
+	}
+	err := r.ExtractInto(&s)
+	return s.Workflows, err
 }
 
 // Workflow represents a workflow execution on OpenStack mistral API.
