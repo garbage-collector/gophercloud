@@ -129,30 +129,13 @@ func TestCreateWorkflow(t *testing.T) {
 	definition := `---
 version: '2.0'
 
-create_vm:
+simple_echo:
 	description: Simple workflow example
 	type: direct
 
-	input:
-	- vm_name
-	- image_ref
-	- flavor_ref
-	output:
-	vm_id: <% $.vm_id %>
-
 	tasks:
-	create_server:
-		action: nova.servers_create name=<% $.vm_name %> image=<% $.image_ref %> flavor=<% $.flavor_ref %>
-		publish:
-		vm_id: <% task(create_server).result.id %>
-		on-success:
-		- wait_for_instance
-
-	wait_for_instance:
-		action: nova.servers_find id=<% $.vm_id %> status='ACTIVE'
-		retry:
-		delay: 5
-		count: 15`
+	test:
+		action: std.echo output="Hello World!"`
 
 	th.Mux.HandleFunc("/workflows", func(w http.ResponseWriter, r *http.Request) {
 		th.TestMethod(t, r, "POST")
